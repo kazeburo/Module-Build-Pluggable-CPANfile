@@ -5,7 +5,7 @@ ppport.h
 *.sw[po]
 *.bak
 *.old
-Build
+/Build
 _build/
 xshelper.h
 tags
