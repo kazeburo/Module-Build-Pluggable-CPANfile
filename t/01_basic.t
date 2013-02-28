@@ -51,7 +51,6 @@ is_deeply( $spec->{prereqs}{build}, {
 
 is_deeply( $spec->{prereqs}{configure}, {
     requires => {
-        'Module::CPANfile' => $Module::CPANfile::VERSION,
         'Module::Build::Pluggable::CPANfile' => $Module::Build::Pluggable::CPANfile::VERSION,
     }
 });

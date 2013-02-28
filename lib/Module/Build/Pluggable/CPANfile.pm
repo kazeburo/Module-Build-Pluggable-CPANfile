@@ -34,10 +34,6 @@ sub HOOK_prepare {
     
 }
 
-sub HOOK_configure {
-    my $self = shift;
-    $self->configure_requires("Module::CPANfile", $Module::CPANfile::VERSION);
-}
 
 1;
 __END__
