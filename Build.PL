@@ -15,6 +15,7 @@ my $build = Module::Build->new(
         perl => '5.008005',
         'parent'                        => '0',
         'Module::Build::Pluggable'      => '0.05',
+        'Module::CPANfile'              => '0.9010'
     },
 
     no_index    => { 'directory' => [ 'inc' ] },
