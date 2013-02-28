@@ -13,16 +13,13 @@ my $build = Module::Build->new(
     configure_requires   => { 'Module::Build' => '0.38' },
     requires             => {
         perl => '5.008005',
-        # 'Exporter'                      => '0',
         'parent'                        => '0',
-        # 'Plack'                         => '0.9949',
+        'Module::Build::Pluggable'      => '0.05',
     },
 
     no_index    => { 'directory' => [ 'inc' ] },
     name        => 'Module-Build-Pluggable-CPANfile',
     module_name => 'Module::Build::Pluggable::CPANfile',
-
-    # script_files => [''],
 
     test_files => (-d '.git' || $ENV{RELEASE_TESTING}) ? 't/ xt/' : 't/',
     recursive_test_files => 1,
