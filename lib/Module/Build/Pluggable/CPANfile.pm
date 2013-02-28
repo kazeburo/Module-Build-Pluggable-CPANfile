@@ -58,7 +58,7 @@ Module::Build::Pluggable::CPANfile - Include cpanfile
   );
   
   my $builder = Module::Build::Pluggable->new(
-        ... # normal M::B args execlude prereqs
+        ... # normal M::B args. but not required prereqs
   );
   $builder->create_build_script();
 
