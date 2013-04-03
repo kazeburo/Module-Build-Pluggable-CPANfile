@@ -32,7 +32,8 @@ $builder->create_build_script();
 
 $test->write_file('cpanfile', <<'...');
 requires 'LWP::UserAgent' => '6.02';
-requires 'HTTP::Message'  => '6.04'; 
+requires 'HTTP::Message'  => '6.04';
+suggests 'JSON' => '2.53';
 on 'test' => sub {
    requires 'Test::More'     => '0.98';
    requires 'Test::Requires' => '0.06';

@@ -9,14 +9,15 @@ my $build = Module::Build->new(
     build_requires       => {
         'Test::More'     => '0.98',
         'Test::Requires' => 0,
-        'version'        => '0.99',
     },
     configure_requires   => { 'Module::Build' => '0.38' },
     requires             => {
         perl => '5.008005',
-        'parent'                        => '0',
-        'Module::Build::Pluggable'      => '0.05',
-        'Module::CPANfile'              => '0.9010'
+        'version'                  => '0.99',
+        'parent'                   => '0',
+        'Module::Build::Pluggable' => '0.05',
+        'Module::CPANfile'         => '0.9010',
+        'List::Util'               => '1.14'
     },
 
     no_index    => { 'directory' => [ 'inc' ] },
