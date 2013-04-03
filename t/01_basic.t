@@ -4,7 +4,11 @@ use utf8;
 use Test::More;
 use Test::Module::Build::Pluggable;
 use Module::Build::Pluggable::CPANfile;
-use JSON;
+use version;
+
+require Module::Build;
+my $support_test_requries = 
+    ( version->parse($Module::Build::VERSION) >= version->parse('0.4004') ) ? 1 : 0;
 
 my $test = Test::Module::Build::Pluggable->new();
 $test->write_file('Build.PL', <<'...');
@@ -12,7 +16,6 @@ use strict;
 use Module::Build::Pluggable (
     'CPANfile',
 );
-
 my $builder = Module::Build::Pluggable->new(
     dist_name => 'Eg',
     dist_version => 0.01,
@@ -35,31 +38,37 @@ on 'test' => sub {
    requires 'Test::Requires' => '0.06';
 };
 ...
+$test->write_file('MANIFEST', <<'...');
+Build.PL
+MANIFEST
+...
 
 $test->run_build_pl();
-my $meta = $test->read_file('MYMETA.json');
-ok($meta);
-my $spec = decode_json($meta);
 
-is_deeply( $spec->{prereqs}{build}, {
-    requires => {
+my $meta = $test->read_file('_build/prereqs');
+ok($meta);
+my $prereqs = eval $meta;
+
+is_deeply( $prereqs->{build_requires}, $support_test_requries ? {
+        'Module::Build::Pluggable::CPANfile' => $Module::Build::Pluggable::CPANfile::VERSION,
+    } : {
         'Test::More'     => '0.98',
         'Test::Requires' => '0.06',
         'Module::Build::Pluggable::CPANfile' => $Module::Build::Pluggable::CPANfile::VERSION,
     }
-});
+);
 
-is_deeply( $spec->{prereqs}{configure}, {
-    requires => {
-        'Module::Build::Pluggable::CPANfile' => $Module::Build::Pluggable::CPANfile::VERSION,
-    }
-});
+SKIP : {
+    skip "You have Module::Build < 0.4004",1 if !$support_test_requries;
+    is_deeply( $prereqs->{test_requires}, {
+        'Test::More'     => '0.98',
+        'Test::Requires' => '0.06',
+    });
+}
 
-is_deeply( $spec->{prereqs}{runtime}, {
-    requires => {
-        'LWP::UserAgent' => '6.02',
-        'HTTP::Message'  => '6.04', 
-    }
+is_deeply( $prereqs->{requires}, {
+    'LWP::UserAgent' => '6.02',
+    'HTTP::Message'  => '6.04', 
 });
 
 done_testing();
