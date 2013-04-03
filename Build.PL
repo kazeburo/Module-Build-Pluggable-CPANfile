@@ -9,6 +9,7 @@ my $build = Module::Build->new(
     build_requires       => {
         'Test::More'     => '0.98',
         'Test::Requires' => 0,
+        'Capture::Tiny'  => '0.21'
     },
     configure_requires   => { 'Module::Build' => '0.38' },
     requires             => {

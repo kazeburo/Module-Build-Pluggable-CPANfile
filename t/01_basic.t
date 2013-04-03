@@ -5,6 +5,7 @@ use Test::More;
 use Test::Module::Build::Pluggable;
 use Module::Build::Pluggable::CPANfile;
 use version;
+use Capture::Tiny ':all';
 
 require Module::Build;
 my $support_test_requries = 
@@ -44,8 +45,8 @@ Build.PL
 MANIFEST
 ...
 
-$test->run_build_pl();
-
+my $stderr = capture_stderr { $test->run_build_pl() };
+like $stderr, qr/not support 'suggests'/;
 my $meta = $test->read_file('_build/prereqs');
 ok($meta);
 my $prereqs = eval $meta;
