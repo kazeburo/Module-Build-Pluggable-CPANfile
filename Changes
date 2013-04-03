@@ -1,5 +1,8 @@
 Revision history for Perl extension Module::Build::Pluggable::CPANfile
 
+0.03    Wed Apr 3 14:27:59 2013
+    - added prereqs test support. display warnings unsuppoted prereqs type/phase
+
 0.02    Sun Mar 3 14:22:32 2013
     - added JSON to build_requires
 
