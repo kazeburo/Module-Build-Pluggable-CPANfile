@@ -8,7 +8,7 @@ use Module::CPANfile;
 use version;
 use List::Util;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 require Module::Build;
 my $support_test_requries = 
