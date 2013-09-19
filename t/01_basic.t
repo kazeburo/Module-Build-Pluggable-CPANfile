@@ -8,6 +8,10 @@ use version;
 use Capture::Tiny ':all';
 use File::Spec;
 
+if ( $^O eq 'MSWin32' ) {
+    plan skip_all => 'Skip test on Windows';
+}
+
 require Module::Build;
 my $support_test_requries = 
     ( version->parse($Module::Build::VERSION) >= version->parse('0.4004') ) ? 1 : 0;

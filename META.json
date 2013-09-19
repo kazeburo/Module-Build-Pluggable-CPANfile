@@ -25,13 +25,6 @@
       ]
    },
    "prereqs" : {
-      "build" : {
-         "requires" : {
-            "Capture::Tiny" : "0.21",
-            "Test::More" : "0.98",
-            "Test::Requires" : "0"
-         }
-      },
       "configure" : {
          "requires" : {
             "CPAN::Meta" : "0",
@@ -55,6 +48,13 @@
             "parent" : "0",
             "perl" : "5.008005",
             "version" : "0.99"
+         }
+      },
+      "test" : {
+         "requires" : {
+            "Capture::Tiny" : "0.21",
+            "Test::More" : "0.98",
+            "Test::Requires" : "0"
          }
       }
    },
